@@ -1,7 +1,7 @@
 "use client";
 import { Button, CircularProgress } from "@nextui-org/react";
-import { useCategories } from "/lib/firestore/categories/read";
-import { deleteCategory } from "/lib/firestore/categories/write";
+import { useBrands } from "/lib/firestore/brands/read";
+import { deleteBrand } from "/lib/firestore/brands/write";
 import { Edit2, Trash2 } from "lucide-react";
 import Image from "next/image";
 import toast from "react-hot-toast";
@@ -9,7 +9,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function ListView() {
-  const { data: categories, error, isLoading } = useCategories();
+  const { data: brands, error, isLoading } = useBrands();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -25,12 +25,12 @@ export default function ListView() {
   }
 
   const handelDelete = async (id) => {
-    if (!confirm("Are you sure you want to delete this category?")) return;
+    if (!confirm("Are you sure you want to delete this brand?")) return;
     setLoading(true); // Set loading state before starting deletion
     try {
-      await deleteCategory({ id });
-      toast.success("Category Deleted Successfully");
-      router.push("/admin/categories")
+      await deleteBrand({ id });
+      toast.success("Brand Deleted Successfully");
+      router.push("/admin/brands");
       router.refresh();
     } catch (error) {
       toast.error(error?.message);
@@ -39,14 +39,14 @@ export default function ListView() {
   };
 
   const handleUpdate = (id) => {
-    router.push(`/admin/categories?id=${id}`);
+    router.push(`/admin/brands?id=${id}`);
   };
 
   return (
     <div className="md:pr-5 md:px-0 px-5 flex flex-col gap-3 rounded-xl flex-1">
-      <h1 className="text-xl font-semibold">Categories</h1>
+      <h1 className="text-xl font-semibold">Brands</h1>
 
-      {!categories ? (
+      {!brands ? (
         <p>There is no Data</p>
       ) : (
         <table className="border-separate  border-spacing-y-3">
@@ -67,7 +67,7 @@ export default function ListView() {
             </tr>
           </thead>
           <tbody>
-            {categories.map((item, index) => {
+            {brands.map((item, index) => {
               return (
                 <tr key={index}>
                   <td className="border-y bg-white px-3 py-2 border-l rounded-lg text-center">

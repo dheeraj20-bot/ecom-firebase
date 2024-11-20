@@ -20,12 +20,15 @@ export default function Header() {
 
   return (
     <nav className="py-3 px-20 border-b flex items-center justify-between">
-      <img className="size-10" src="/logo.webp" alt="logo" />
+      <Link href="/">
+        <img className=" h-10" src="/logo.svg" alt="logo" />
+      </Link>
+
       <div className="flex items-center gap-4 font-semibold">
         {menulist.map((item) => (
           <Link
             key={item?.name}
-            className="hover:text-green-600 transition-colors duration-200"
+            className="hover:text-yellow-500 transition-colors duration-200"
             href={item?.link}
           >
             <button>{item?.name}</button>

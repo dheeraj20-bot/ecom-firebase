@@ -10,6 +10,6 @@ export default function Header({ toggle }) {
                 <Menu />
             </button>
         </div>
-          <User className="size-8"/>
+          <h1 className="text-xl font-semibold">Dashboard</h1>
     </section>;
   }
