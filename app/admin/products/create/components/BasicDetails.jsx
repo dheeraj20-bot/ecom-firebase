@@ -8,7 +8,7 @@ export default function BasicDetails({ data, handleData }) {
   console.log(brands);
 
   return (
-    <section className="bg-white w-full flex flex-col gap-3 rounded-xl p-4 border">
+    <section className="bg-white flex-1 flex flex-col gap-3 rounded-xl p-4 border">
       <h1 className="font-semibold">Basic Details</h1>
       <div className="flex flex-col gap-1">
         <label className="text-gray-600 text-sm" htmlFor="product-title">
@@ -107,7 +107,7 @@ export default function BasicDetails({ data, handleData }) {
         <input
           required
           type="number"
-          value={data?.stock ?? ""}
+          value={data?.stock ?? 0}
           onChange={(e) => {
             handleData("stock", e.target.valueAsNumber);
           }}
@@ -128,7 +128,7 @@ export default function BasicDetails({ data, handleData }) {
         <input
           required
           type="number"
-          value={data?.price ?? ""}
+          value={data?.price ?? 0}
           onChange={(e) => {
             handleData("price", e.target.valueAsNumber);
           }}
@@ -148,7 +148,7 @@ export default function BasicDetails({ data, handleData }) {
         <input
           required
           type="number"
-          value={data?.salePrice ?? ""}
+          value={data?.salePrice ?? 0}
           onChange={(e) => {
             handleData("salePrice", e.target.valueAsNumber);
           }}
