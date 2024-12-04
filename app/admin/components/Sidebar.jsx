@@ -1,15 +1,14 @@
 import { Button } from "@nextui-org/react";
 import {
-  Building2,
   CalendarArrowUp,
   CarFront,
   Layers2,
+  Layers3,
   LayoutDashboard,
   LibraryBig,
   LogOut,
-  PackageOpen,
   ShieldCheck,
-  ShoppingCart,
+ 
   Star,
   User,
 } from "lucide-react";
@@ -28,7 +27,7 @@ export default function Sidebar() {
     },
     {
       name: "Pre Trips",
-      link: "/admin/products",
+      link: "/admin/pretrips",
       icon: <CarFront className="size-5" />,
     },
     {
@@ -37,9 +36,9 @@ export default function Sidebar() {
       icon: <Layers2 className="size-5" />,
     },
     {
-      name: "Brands",
-      link: "/admin/brands",
-      icon: <Building2 className="size-5" />,
+      name: "States",
+      link: "/admin/states",
+      icon: <Layers3 className="size-5" />,
     },
     {
       name: "Bookings",

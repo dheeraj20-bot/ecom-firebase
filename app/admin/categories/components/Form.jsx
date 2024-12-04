@@ -38,6 +38,8 @@ export default function Form() {
   useEffect(()=>{
     if(id){
         fetchData()
+    }else {
+        setData(null)
     }
   },[id])
 

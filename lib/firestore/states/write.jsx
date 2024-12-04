@@ -9,7 +9,7 @@ import {
 import { db, storage } from "/lib/firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
-export const createNewBrand = async ({ data, image }) => {
+export const createNewState = async ({ data, image }) => {
   if (!image) {
     throw new Error("Image is required");
   }
@@ -20,11 +20,11 @@ export const createNewBrand = async ({ data, image }) => {
 
   const newId = doc(collection(db, `ids`)).id;
 
-  const imageRef = ref(storage, `brands/${newId}`);
+  const imageRef = ref(storage, `states/${newId}`);
   await uploadBytes(imageRef, image);
   const imageUrl = await getDownloadURL(imageRef);
 
-  await setDoc(doc(db, `brands/${newId}`), {
+  await setDoc(doc(db, `states/${newId}`), {
     ...data,
     id: newId,
     image: imageUrl,
@@ -33,7 +33,7 @@ export const createNewBrand = async ({ data, image }) => {
 };
 
 
-export const updateBrand = async ({ data, image }) => {
+export const updateState = async ({ data, image }) => {
   if (!data?.name) {
     throw new Error("Name is required");
   }
@@ -47,23 +47,23 @@ export const updateBrand = async ({ data, image }) => {
    let imageURL = data?.image;
 
    if(image){
-    const imageRef = ref(storage, `brands/${id}`);
+    const imageRef = ref(storage, `states/${id}`);
     await uploadBytes(imageRef, image);
     imageURL = await getDownloadURL(imageRef);
 
    }
  
-  await updateDoc(doc(db, `brands/${id}`), {
+  await updateDoc(doc(db, `states/${id}`), {
     ...data,
     image: imageURL,
     timestampUpdate: Timestamp.now(),
   });
 };
 
-export const deleteBrand = async ({ id }) => {
+export const deleteState = async ({ id }) => {
   if (!id) {
     throw new Error("ID is required");
   }
 
-  await deleteDoc(doc(db, `brands/${id}`));
+  await deleteDoc(doc(db, `states/${id}`));
 };

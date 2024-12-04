@@ -43,7 +43,7 @@ export default function AdminLayout({ children }) {
       <div className="hidden md:block">
         <Sidebar />
       </div>
-      <section className="flex-1 flex flex-col min-h-screen">
+      <section className="flex-1 flex flex-col min-h-screen overflow-x-clip">
         <Header toggle={toggle} />
         <section className="flex-1 bg-gray-50 ">{children}</section>
       </section>

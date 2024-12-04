@@ -1,7 +1,7 @@
 "use client";
 import { Button, CircularProgress } from "@nextui-org/react";
-import { useProducts } from "/lib/firestore/products/read";
-import { deleteProduct } from "/lib/firestore/products/write";
+import { useStates } from "/lib/firestore/states/read";
+import { deleteState } from "/lib/firestore/states/write";
 import { Edit2, Trash2 } from "lucide-react";
 import Image from "next/image";
 import toast from "react-hot-toast";
@@ -9,7 +9,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function ListView() {
-  const { data: products, error, isLoading } = useProducts();
+  const { data: brands, error, isLoading } = useStates();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -25,12 +25,12 @@ export default function ListView() {
   }
 
   const handelDelete = async (id) => {
-    if (!confirm("Are you sure you want to delete this category?")) return;
+    if (!confirm("Are you sure you want to delete this brand?")) return;
     setLoading(true); // Set loading state before starting deletion
     try {
-      await deleteProduct({ id });
-      toast.success("Product Deleted Successfully");
-      router.push("/admin/products");
+      await deleteBrand({ id });
+      toast.success("Brand Deleted Successfully");
+      router.push("/admin/brands");
       router.refresh();
     } catch (error) {
       toast.error(error?.message);
@@ -39,12 +39,14 @@ export default function ListView() {
   };
 
   const handleUpdate = (id) => {
-    router.push(`/admin/products/form?id=${id}`);
+    router.push(`/admin/states?id=${id}`);
   };
 
   return (
     <div className="md:pr-5 md:px-0 px-5 flex flex-col gap-3 rounded-xl flex-1">
-      {!products ? (
+      <h1 className="text-xl font-semibold">States</h1>
+
+      {!brands ? (
         <p>There is no Data</p>
       ) : (
         <table className="border-separate  border-spacing-y-3">
@@ -57,19 +59,7 @@ export default function ListView() {
                 Image
               </th>
               <th className="border-y font-semibold bg-white text-left px-3 py-2">
-                Title
-              </th>
-              <th className="border-y font-semibold bg-white text-left px-3 py-2">
-                Price
-              </th>
-              <th className="border-y font-semibold bg-white text-left px-3 py-2">
-                Stock
-              </th>
-              <th className="border-y font-semibold bg-white text-left px-3 py-2">
-                Orders
-              </th>
-              <th className="border-y font-semibold bg-white text-left px-3 py-2">
-                Status
+                Name
               </th>
               <th className="border-y font-semibold bg-white px-3 py-2 text-center border-r rounded-lg">
                 Actions
@@ -77,7 +67,7 @@ export default function ListView() {
             </tr>
           </thead>
           <tbody>
-            {products.map((item, index) => {
+            {brands.map((item, index) => {
               return (
                 <tr key={index}>
                   <td className="border-y bg-white px-3 py-2 border-l rounded-lg text-center">
@@ -86,41 +76,16 @@ export default function ListView() {
                   <td className="border-y bg-white px-3 py-2">
                     <div className="flex justify-center">
                       <Image
-                        alt={item?.title}
+                        alt={item?.name}
                         width={1000}
                         height={1000}
                         className=" size-10 rounded-xl"
-                        src={item?.featureImageUrl}
+                        src={item?.image}
                       />
                     </div>
                   </td>
                   <td className="border-y bg-white px-3 py-2 text-left">
-                    {item?.title}
-                  </td>
-                  <td className="border-y bg-white px-3 py-2 text-left">
-                    <span className="line-through text-sm text-red-500 mr-2">
-                      {" "}
-                      INR {item?.price}
-                    </span>{" "}
-                    INR {item?.salePrice}
-                  </td>
-                  <td className="border-y bg-white px-3 py-2 text-left">
-                    {item?.stock}
-                  </td>
-                  <td className="border-y bg-white px-3 py-2 text-left">
-                    {item?.orders ?? 0}
-                  </td>
-                  <td className="border-y bg-white px-3 py-2 text-left">
-                    {item?.stock - (item?.orders ?? 0) > 0 && (
-                      <div className="text-green-500 px-2 text-xs py-1 bg-green-200 font-bold w-fit rounded-lg">
-                        Available
-                      </div>
-                    )}
-                    {item?.stock - (item?.orders ?? 0) <= 0 && (
-                      <div className="text-red-500 text-xs px-2 py-1 bg-red-200 w-fit rounded-lg">
-                        Out of Stock
-                      </div>
-                    )}
+                    {item?.name}
                   </td>
                   <td className="border-y bg-white px-3 py-2 border-r rounded-r-lg">
                     <div className="flex gap-2 justify-center items-center">

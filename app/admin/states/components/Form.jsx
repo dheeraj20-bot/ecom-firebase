@@ -4,8 +4,8 @@ import { Button } from "@nextui-org/react";
 import { X } from "lucide-react";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { createNewBrand,updateBrand } from "/lib/firestore/brands/write";
-import { getBrand } from "/lib/firestore/brands/read_server";
+import { createNewState,updateState } from "/lib/firestore/states/write";
+import { getState } from "/lib/firestore/states/read_server";
 import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Form() {
@@ -18,15 +18,14 @@ export default function Form() {
   const id = searchParams.get("id");
 
   // console.log(id);
+
   
 
   const fetchData = async()=>{
-      try {
-        // console.log(id);
-        
-           const res = await getBrand({id})
+      try {        
+           const res = await getState({id})
            if(!res){
-               toast.error("Brands not Found")
+               toast.error("State not Found")
            }else{
                setData(res)
            }
@@ -38,6 +37,8 @@ export default function Form() {
   useEffect(()=>{
     if(id){
         fetchData()
+    }else {
+        setData(null)
     }
   },[id])
 
@@ -59,7 +60,7 @@ export default function Form() {
   const handelSubmit = async (e) => {
     setLoading(true);
     try {
-      await createNewBrand({ data, image });
+      await createNewState({ data, image });
       toast.success("Brand created successfully");
       setData(null);
       setImage(null);
@@ -73,11 +74,11 @@ export default function Form() {
   const handelUpdate = async (e) => {
     setLoading(true);
     try {
-      await updateBrand({ data, image });
+      await updateState({ data, image });
       toast.success("Successfully Updated ");
       setData(null);
       setImage(null);
-      router.push("/admin/brands")
+      router.push("/admin/states")
     } catch (error) {
       toast.error("Something went wrong");
     }
@@ -88,7 +89,7 @@ export default function Form() {
     <div className="p-5 flex flex-col gap-3 bg-white rounded-xl w-full md:w-[400px]">
       <h1 className="font-semibold">
         {id ? "Update" : "Create"}{" "}
-         Brand
+         State
       </h1>
       <form
         onSubmit={(e) => {
@@ -136,14 +137,14 @@ export default function Form() {
           />
         </div>
         <div className="flex  gap-1 flex-col">
-          <label className="text-gray-500 text-sm" htmlFor="brand-name">
+          <label className="text-gray-500 text-sm" htmlFor="state-name">
             Name <span className="text-red-500">*</span>
           </label>
           <input
             required
             className="border px-4 py-2 rounded-lg w-full focus:outline-none"
-            id="brand-name"
-            name="brand-name"
+            id="state-name"
+            name="state-name"
             type="text"
             placeholder="Enter Name"
             value={data?.name ?? ""}
@@ -158,7 +159,7 @@ export default function Form() {
           type="submit"
           className="bg-yellow-400 text-white font-semibold"
         >
-          {id ? "Update Brand" : "Create Brand"}
+          {id ? "Update State" : "Create State"}
         </Button>
       </form>
     </div>
