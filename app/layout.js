@@ -16,8 +16,8 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Shopify Clone",
-  description: "Shopfy Clone",
+  title: "WheelRoute",
+  description: "Plan your trip",
 };
 
 export default function RootLayout({ children }) {

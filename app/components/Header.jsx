@@ -37,8 +37,13 @@ export default function Header() {
       </div>
 
       <Link href="/login">
-        <button className="bg-yellow-400 px-5 py-2 font-bold text-white rounded-full">
-          Login
+        <button className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-yellow-400 px-6 font-medium  duration-500">
+          <div className="translate-y-0 transition group-hover:-translate-y-[150%]">
+            Login
+          </div>
+          <div className="absolute translate-y-[150%] transition group-hover:translate-y-0">
+            Login
+          </div>
         </button>
       </Link>
     </nav>

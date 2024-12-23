@@ -6,6 +6,7 @@ import {
   Timestamp,
   updateDoc,
 } from "firebase/firestore";
+// @ts-ignore
 import { db, storage } from "/lib/firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
@@ -20,19 +21,40 @@ export const createNewCategory = async ({ data, image }) => {
     throw new Error("Slug is required");
   }
 
-  const newId = doc(collection(db, `ids`)).id;
+  console.log("data taken ", Timestamp.now());
 
+
+  const newId = doc(collection(db, `ids`)).id;
+  console.log(newId);
+  
   const imageRef = ref(storage, `categories/${newId}`);
+  console.log(imageRef);
+  
   await uploadBytes(imageRef, image);
   const imageUrl = await getDownloadURL(imageRef);
+   
+  console.log("Hey Imageref here :-:" ,imageUrl)
+ 
 
-  await setDoc(doc(db, `categories/${newId}`), {
-    ...data,
-    id: newId,
-    image: imageUrl,
-    timestampCreate: Timestamp.now(),
-  });
+   try {
+    const res = await setDoc(doc(db, `categories/${newId}`), {
+      ...data,
+      id: newId,
+      image: imageUrl,
+      timestampCreate: Timestamp.now(),
+    });
+    console.log(res);
+    
+   } catch (error) {
+        console.log(error); 
+   }
+  
+
+  
+  
 };
+
+
 export const updateCategory = async ({ data, image }) => {
   if (!data?.name) {
     throw new Error("Name is required");

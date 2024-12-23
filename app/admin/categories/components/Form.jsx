@@ -31,7 +31,9 @@ export default function Form() {
                setData(res)
            }
       } catch (error) {
+         console.log(error?.message);           
          toast.error(error?.message);
+         console.log(error);
       }
   }
 

@@ -1,5 +1,6 @@
 "use client"
 
+// @ts-ignore
 import { db } from "/lib/firebase";
 import { collection, limit, onSnapshot, query, startAfter } from "firebase/firestore";
 import useSWRSubscription from "swr/subscription";

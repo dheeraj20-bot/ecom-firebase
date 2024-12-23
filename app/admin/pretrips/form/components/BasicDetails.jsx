@@ -1,6 +1,8 @@
 'use client';
 import { useState, useEffect } from "react";
+// @ts-ignore
 import { useStates } from "/lib/firestore/states/read";
+// @ts-ignore
 import { useCategories } from "/lib/firestore/categories/read";
 
 export default function BasicDetails({ data, handleData }) {
@@ -80,10 +82,10 @@ export default function BasicDetails({ data, handleData }) {
         </label>
         <select
           required
-          value={data?.brandId || ""}
-          onChange={(e) => handleChange("brandId", e.target.value)}
-          id="product-brand"
-          name="product-brand"
+          value={data?.stateId || ""}
+          onChange={(e) => handleChange("stateId", e.target.value)}
+          id="product-state"
+          name="product-state"
           className="border px-4 py-2 rounded-lg w-full outline-none"
         >
           <option value="">Select State</option>
