@@ -1,8 +1,8 @@
-
-
 "use client"
 
+// @ts-ignore
 import SignInWithGoogle from "/app/components/SignInWithGoogle";
+// @ts-ignore
 import { useAuth } from "/contexts/AuthContext";
 import { Button } from "@nextui-org/react";
 import Link from "next/link";
@@ -25,7 +25,7 @@ export default function LoginPage() {
       <section className="flex flex-col gap-3">
         <div className="flex flex-col gap-3 p-20 md:p-10 bg-white rounded-xl  md:min-w-[450px]">
           <div className="flex justify-center mb-3">
-            <img src="/logo.webp" className="size-12" alt="" />
+            <img src="/logo.svg" className="size-20" alt="" />
           </div>
           <h1 className="font-bold text-center  text-xl">Login With Email</h1>
           <form className="flex flex-col gap-3">
@@ -43,20 +43,20 @@ export default function LoginPage() {
               id="user-password"
               placeholder="Enter your password"
             />
-            <Button color="success" className="w-full text-white">
+            <Button  className="w-full bg-yellow-500  text-white">
               Login
             </Button>
           </form>
           <div className="flex items-center justify-between">
             <Link
               href="/forget-password"
-              className="text-green-500 font-semibold text-sm"
+              className="text-yellow-500 font-semibold text-sm"
             >
               <button>New ? Sign Up</button>
             </Link>
             <Link
               href="/forget-password"
-              className="text-green-500 font-semibold text-sm"
+              className="text-yellow-500 font-semibold text-sm"
             >
               <button>Forget Password?</button>
             </Link>

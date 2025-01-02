@@ -18,6 +18,7 @@
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-quill-new": "^3.3.3",
+    "swiper": "^11.1.15",
     "swr": "^2.2.5"
   },
   "devDependencies": {

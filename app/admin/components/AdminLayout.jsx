@@ -4,11 +4,14 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import {useAuth} from "/contexts/AuthContext";
+
 
 export default function AdminLayout({ children }) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const sidebarRef = useRef(null);
+  const {user} = useAuth();
 
   useEffect(() => {
     toggle();
@@ -29,8 +32,9 @@ export default function AdminLayout({ children }) {
   const toggle = () => {
     setIsOpen(!isOpen);
   };
+
   return (
-    <main className="flex relative">
+    <main className="flex relative text-black">
       <div
         ref={sidebarRef}
         className={`${
