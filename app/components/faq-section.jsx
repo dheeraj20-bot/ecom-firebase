@@ -33,8 +33,8 @@ export default function FAQSection() {
   return (
     <section className="relative bg-black text-white py-20 overflow-hidden">
       {/* Radial Gradients */}
-      <div className="absolute top-0  right-0 w-[500px] h-[500px] bg-yellow-500 rounded-full opacity-10 blur-[100px]" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-orange-500 rounded-full opacity-10 blur-[100px]" />
+      <div className="absolute top-0   right-0 w-[500px] h-[500px] bg-yellow-500 rounded-full opacity-10 blur-[100px]" />
+      <div className="absolute  bottom-0 left-0 w-[500px] h-[500px] bg-orange-500 rounded-full opacity-10 blur-[100px]" />
 
       <motion.div 
         className="max-w-4xl mx-auto px-4"

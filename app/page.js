@@ -4,6 +4,7 @@ import Trips from "./components/trips";
 import WhyChooseUs from "./components/why-choose-us";
 import FAQSection from "./components/faq-section";
 import ImageTextSections from "./components/image-text-sections";
+import TripDetailsPage from "./components/trip-details-page";
 import Footer from "./components/Footer";
 
 import { Button } from "@nextui-org/react";
@@ -29,6 +30,7 @@ export default function Home() {
       <Trips />
       <WhyChooseUs/>
       <ImageTextSections/>
+     
       <FAQSection/>
       <Footer/>
 

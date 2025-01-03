@@ -33,7 +33,7 @@ const socialLinks = [
 export default function Footer() {
   return (
     <motion.footer 
-      className="bg-black text-gray-300"
+      className="bg-black relative text-gray-300"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
