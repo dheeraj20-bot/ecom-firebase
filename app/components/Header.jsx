@@ -77,7 +77,7 @@ export default function Header() {
   // );
 
   return (
-    <Navbar disableAnimation isBordered onMenuOpenChange={setIsMenuOpen}>
+    <Navbar  isBordered onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
