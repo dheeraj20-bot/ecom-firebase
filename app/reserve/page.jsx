@@ -8,11 +8,11 @@ export default function Page() {
   return (
     <section className="flex flex-col justify-between min-h-screen">
       <Header />
-        <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className=" md:p-6 flex flex-col-reverse md:flex-row justify-between">
            <div>
             <SearchSection />
            </div>
-           <div className="col-span-2">
+           <div className="flex-1">
             <GoogleMapSection/>
            </div>
         </div>
